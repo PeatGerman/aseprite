@@ -15,7 +15,13 @@ jobs:
           submodules: recursive
 
       - name: Install Skia
-        uses: aseprite/get-skia@main
+        shell: bash
+        run: |
+          skia_path="${{ runner.temp }}/skia"
+          skia_url=$(bash ${{ github.workspace }}/laf/misc/skia-url.sh)
+          curl -s -L -o skia.zip $skia_url
+          7z x skia.zip -o$skia_path -y
+          echo "skia_path=$skia_path" >> $GITHUB_ENV
 
       - name: Setup Ninja
         uses: aseprite/get-ninja@main
