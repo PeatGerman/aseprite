@@ -29,6 +29,8 @@ jobs:
 
       - name: Setup MSVC Compiler
         uses: TheMrMilchmann/setup-msvc-dev@v4
+        with:
+          arch: x64
 
       - name: Generating Makefiles
         shell: bash
